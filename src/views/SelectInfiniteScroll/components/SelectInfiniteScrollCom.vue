@@ -144,21 +144,33 @@ export default {
         page: this.page,
         num: this.num
       }
-      this.$http
-        .get('http://api.tianapi.com/topnews/index', {
-          params
-        })
-        .then(res => {
-          if (res.status === 200) {
-            if (res.data.newslist && res.data.newslist.length > 0) {
-              // 对数据进行格式化（在父组件中定义）
-              const data = this.getListFormat(res.data.newslist)
-              // 判断是否是最后一页了
-              if (data.length < this.num) this.finished = true
-              this.list = this.list.concat(data)
-            }
+
+      // 使用父组件已封装好的请求
+      this.getListMethods(params).then(res => {
+        if (res.status === 200) {
+          if (res.data.newslist && res.data.newslist.length > 0) {
+            const data = this.getListFormat(res.data.newslist)
+            if (data.length < this.num) this.finished = true
+            this.list = this.list.concat(data)
           }
-        })
+        }
+      })
+
+      // this.$http
+      //   .get('http://api.tianapi.com/topnews/index', {
+      //     params
+      //   })
+      //   .then(res => {
+      //     if (res.status === 200) {
+      //       if (res.data.newslist && res.data.newslist.length > 0) {
+      //         // 对数据进行格式化（在父组件中定义）
+      //         const data = this.getListFormat(res.data.newslist)
+      //         // 判断是否是最后一页了
+      //         if (data.length < this.num) this.finished = true
+      //         this.list = this.list.concat(data)
+      //       }
+      //     }
+      //   })
     },
     searchMethod (searchText) {
       if (searchText === this.searchText) return

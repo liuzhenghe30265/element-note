@@ -9,6 +9,7 @@
       ref="myScrollSelect"
       :selected-value="selectedValue"
       :default-selected-str="defaultSelectedStr"
+      :get-list-methods="getListMethods"
       :get-list-format="getListFormat"
       :get-list-params="getListParams"
       clearable
@@ -18,7 +19,6 @@
 </template>
 
 <script>
-
 import SelectInfiniteScrollCom from './components/SelectInfiniteScrollCom.vue'
 export default {
   name: 'InfiniteScroll',
@@ -27,6 +27,7 @@ export default {
   },
   data () {
     return {
+      getListMethods: this.queryList,
       // 下拉数据格式化
       getListFormat: (list) => {
         return list.map(
@@ -50,6 +51,21 @@ export default {
   mounted () {
   },
   methods: {
+    queryList (params) {
+      const promise = new Promise((resolve, reject) => {
+        this.$http
+          .get('http://api.tianapi.com/topnews/index', {
+            params
+          })
+          .then(res => {
+            resolve(res)
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
+      return promise
+    },
     selectedChange (val) {
       console.log('........val', val)
     }
