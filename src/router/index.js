@@ -9,9 +9,9 @@ const routes = [
     component: resolve => require(['@/views/InfiniteScroll'], resolve)
   },
   {
-    path: '/About',
-    name: 'About',
-    component: resolve => require(['@/views/About.vue'], resolve)
+    path: '/SelectInfiniteScroll',
+    name: 'el-select 无限滚动',
+    component: resolve => require(['@/views/SelectInfiniteScroll'], resolve)
   }
 ]
 
