@@ -5,7 +5,7 @@
       id="nav">
       <router-link
         to="/">
-        Home
+        InfiniteScroll
       </router-link>
       |
       <router-link

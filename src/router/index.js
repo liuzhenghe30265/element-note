@@ -5,14 +5,14 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: resolve => require(['@/views/Home.vue'], resolve),
+    name: 'InfiniteScroll 无限滚动',
+    component: resolve => require(['@/views/InfiniteScroll'], resolve)
   },
   {
     path: '/About',
     name: 'About',
-    component: resolve => require(['@/views/About.vue'], resolve),
-  },
+    component: resolve => require(['@/views/About.vue'], resolve)
+  }
 ]
 
 const router = new VueRouter({
