@@ -42,7 +42,7 @@ export default {
       this.$http
         .get('http://api.tianapi.com/film/index', {
           params: {
-            key: '',
+            key: 'e5168944ae4e17730c6b490f897154b2',
             num: this.num,
             page: this.page
           }
